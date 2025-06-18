@@ -1,0 +1,30 @@
+.fixed-img {
+  height: 200px;
+  object-fit: cover;
+}
+.crpinter{
+cursor: pointer;
+}
+
+
+
+  .indicator {
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .indicator:hover,
+  .indicator.active {
+    background-color: var(--main-color) !important;
+  }
+
+
+  li.active .page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+
+}
+.crpointer{
+  cursor: pointer;
+}

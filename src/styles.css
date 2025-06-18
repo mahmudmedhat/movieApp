@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+  --main-color:#FFE353;
+    --main-font: 'Segoe UI', sans-serif;
+    --second-color:#ffffff;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+
+.main-color{
+  color: var(--main-color ) !important;
+}
+.second-color{
+  color: var(--second-color) !important;
+}
+
+.bg-color{
+  background-color: var(--main-color) !important;
+}

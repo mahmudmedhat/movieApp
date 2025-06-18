@@ -1,0 +1,12 @@
+<div class="container my-5">
+    <h2>Search results for "{{ searchTerm }}"</h2>
+    <div class="row g-4">
+      <div *ngFor="let movie of results" class="col-md-2 crpinter h-100">
+        <a class="card" [routerLink]="['/movie-details', movie.id]">
+          <img class="card-img-top" [src]="environment.imageBaseUrl + movie.poster_path" alt="{{ movie.original_title }}" />
+          <p class="fw-bolder m-0 ps-2">{{ movie.original_title }}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  

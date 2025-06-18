@@ -1,0 +1,15 @@
+.genres{
+    font-size: 15px;
+}
+.date{
+    font-size: 10px;
+}
+.reco{
+    padding: 100px;
+}
+.cr{
+    cursor: pointer;
+}
+.img1{
+    width: 100px;height: 30px;
+}

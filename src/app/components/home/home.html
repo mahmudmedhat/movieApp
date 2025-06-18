@@ -1,0 +1,42 @@
+
+
+
+
+<div class="container-fluid my-5">
+  <div class="row g-5">
+    @for (item of responseMovie; track $index) {
+      <div class="col-md-2 crpinter h-100 ">
+        <div class="card" [routerLink]="['/movie-details', item.id]">
+          <img class="card-img-top " [src]="ImgSrc + item.poster_path" alt="">
+          <span class="text-black text-center rounded-3 mt-2 w-25 d-inline-block bg-dark-subtle">{{item.vote_average | votePercent}}</span>
+          <p class="fw-bolder m-0 ps-2">{{item.original_title}}</p>
+          <div class="d-flex m-0 justify-content-between align-items-center ">
+            <p class="text-black-50 ps-2">{{item.release_date}}</p>
+           <span class="pe-2 fs-4 crpinter"> <i class="fas fa-heart"></i></span>
+          </div>
+        </div>
+      </div>
+
+    }
+  </div>
+
+
+</div>
+<div class="text-center mt-3">
+  <nav>
+    <ul class="pagination justify-content-center ">
+      @for (page of pages; track $index) {
+        <li
+          class="page-item crpointer"
+          [class.active]="currentPage === page"
+        >
+          <a
+            class="page-link"
+            (click)="goToPage(page)">
+            {{ page }}
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+</div>

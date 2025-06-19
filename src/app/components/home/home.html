@@ -6,13 +6,14 @@
   <div class="row g-5">
     @for (item of responseMovie; track $index) {
       <div class="col-md-2 crpinter h-100 ">
-        <div class="card" [routerLink]="['/movie-details', item.id]">
-          <img class="card-img-top " [src]="ImgSrc + item.poster_path" alt="">
+        <div class="card" >
+          <img [routerLink]="['/movie-details', item.id]" class="card-img-top " [src]="ImgSrc + item.poster_path" alt="">
           <span class="text-black text-center rounded-3 mt-2 w-25 d-inline-block bg-dark-subtle">{{item.vote_average | votePercent}}</span>
           <p class="fw-bolder m-0 ps-2">{{item.original_title}}</p>
           <div class="d-flex m-0 justify-content-between align-items-center ">
             <p class="text-black-50 ps-2">{{item.release_date}}</p>
-           <span class="pe-2 fs-4 crpinter"> <i class="fas fa-heart"></i></span>
+           <span class="pe-2 fs-4 crpinter" > <i class="fas fa-heart"  [class.text-danger]="WatchList.isInWishlist(item.id)"
+                  [class.text-secondary]="!WatchList.isInWishlist(item.id)" (click)="toggleWishlist(item)"></i></span>
           </div>
         </div>
       </div>

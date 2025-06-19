@@ -19,17 +19,17 @@ recommended:any;
 ngOnInit ():void{
 this._ActivatedRoute.paramMap.subscribe({next:(p)=>{console.log(p.get('id'));
 let idproduct:any=p.get('id');
-this._Movises.getMoviedetails(idproduct).subscribe({next:(res:any)=>{console.log(res);this.item=res},
+this._Movises.getMoviedetails(idproduct).subscribe({next:(res:any)=>{this.item=res},
                                                     error:(err:any)=>{console.log(err);}
-                                       
-                                                  })  
-this._Movises.getrecommended(idproduct).subscribe({next:(res:any)=>{console.log(res);this.recommended=res.results},
+
+                                                  })
+this._Movises.getrecommended(idproduct).subscribe({next:(res:any)=>{this.recommended=res.results},
                                                   error:(err:any)=>{console.log(err);}
                                                   });
-                                                } 
+                                                }
                                                });
                                              }
-                                                
-                                                
-                                             
+
+
+
 }

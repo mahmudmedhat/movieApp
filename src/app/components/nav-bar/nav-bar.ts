@@ -1,22 +1,27 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import {  Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink,RouterLinkActive,CommonModule,RouterModule,FormsModule],
   templateUrl: './nav-bar.html',
-  styleUrls: ['./nav-bar.css']
+  styleUrl: './nav-bar.css'
 })
-export class NavBar {
-  private router = inject(Router);
 
-  onSearch(event: Event, query: string) {
-    event.preventDefault();
-    const trimmedQuery = query.trim();
-    if (trimmedQuery) {
-      this.router.navigate(['/search'], { queryParams: { q: trimmedQuery } });
+
+
+export class NavBar {
+  searchTerm: string = '';
+
+  constructor(private router: Router) {}
+
+  search() {
+    if (this.searchTerm.trim()) {
+      this.router.navigate(['/search'], {
+        queryParams: { q: this.searchTerm }
+      });
     }
   }
 }
-
-

@@ -27,13 +27,13 @@ export class SearchComponent implements OnInit {
       this.searchTerm = params['q'] || '';
       if (this.searchTerm) {
         this._movises.searchMovies(this.searchTerm).subscribe({
-          next: (res) => {
+          next: (res: { results: IMovises[] }) => {
             this.results = res.results;
             if (this.results.length === 0) {
               this._router.navigate(['/not-found']);
             }
           },
-          error: (err) => {
+          error: (err:any) => {
             console.error(err);
             this._router.navigate(['/not-found']);
           }

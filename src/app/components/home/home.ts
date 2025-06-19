@@ -1,41 +1,52 @@
+import { Component, OnInit, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 import { environment } from './../../environments/environment';
-import { Component, inject, OnInit } from '@angular/core';
 import { Movises } from '../../core/movises';
 import { IMovises } from '../../Models/Imovises';
 import { VotePercentPipe } from '../../Models/vote-percent-pipe';
-import { RouterLink } from '@angular/router';
+import { WatchListService } from '../../core/watch-list-service';
 
 @Component({
   selector: 'app-home',
-  imports: [VotePercentPipe,RouterLink],
+  standalone: true,
+  imports: [CommonModule, VotePercentPipe, RouterLink],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrls: ['./home.css']
 })
 export class Home implements OnInit {
-responseMovie:IMovises[]=[]
-pages: number[] = [];
-currentPage: number = 1;
-ImgSrc=environment.imageBaseUrl;
-  /*------------------- هنا بستدعي السيرفيس-------------------- */
-  private _Movises=inject(Movises)
+  responseMovie: IMovises[] = [];
+  pages: number[] = [];
+  currentPage: number = 1;
+  ImgSrc = environment.imageBaseUrl;
 
-/*---------------------------- بعمل سبسكريب علي الداتا اللي جيه من السرفيس ------------------------------ */
+  private _Movises = inject(Movises);
 
-loadMovie(page:number):void{
+  constructor(public WatchList: WatchListService) {}
+
+  ngOnInit(): void {
+    this.loadMovie(this.currentPage);
+  }
+
+  loadMovie(page: number): void {
     this.currentPage = page;
-  this._Movises.getMovie(page).subscribe(response => {
-    this.responseMovie = response.results;
-  })
-  this.pages = Array.from({ length: 4 }, (_, i) => i + 1);
+    this._Movises.getMovie(page).subscribe(response => {
+      this.responseMovie = response.results;
+      this.pages = Array.from({ length: 4 }, (_, i) => i + 1);
+    });
+  }
 
-}
+  goToPage(page: number) {
+    this.loadMovie(page);
+  }
 
-goToPage(page: number) {
-  this.loadMovie(page);
-}
-
-
-ngOnInit(): void {
-this.loadMovie(this.currentPage);
-}
+  toggleWishlist(movie: IMovises) {
+    if (this.WatchList.isInWishlist(movie.id)) {
+      this.WatchList.removeFromWishlist(movie.id);
+    } else {
+      this.WatchList.addToWishlist(movie);
+    }
+  }
+  
 }

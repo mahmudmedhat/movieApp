@@ -4,12 +4,10 @@ import { NavBar } from "./components/nav-bar/nav-bar";
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [NavBar, RouterOutlet],
+  imports: [NavBar,RouterOutlet],
   templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  styleUrl: './app.css'
 })
 export class App {
   protected title = 'movieApp';
 }
-

@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { Home } from './components/home/home';
-import { People } from './components/people/people';
 import { NotFound } from './components/not-found/not-found';
 import { WatchList } from './components/watch-list/watch-list';
 import { MovieDetails } from './components/movie-details/movie-details';
